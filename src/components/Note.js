@@ -14,10 +14,6 @@ function Note(note) {
 		}
 	}
 
-	const removeNote = () => {
-		setNotes([...notes.filter(n => n.number !== note.number)])
-	}
-
 	const setNotePosition = (e, data) => {
 		const newNotes = notes.map(n => {
 			if (n.number === note.number){
@@ -39,7 +35,6 @@ function Note(note) {
 				<span onClick={showNote} className="note-box-number">{note.number}</span>
 				<div className="note" style={{display: visible ? 'flex' : 'none'}}>
 					{note.note}
-					<button onClick={removeNote}>Kaldır</button>
 				</div>
 			</div>
 		</Draggable>
