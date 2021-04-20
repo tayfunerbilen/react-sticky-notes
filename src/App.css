@@ -1,5 +1,6 @@
 .screen {
     overflow: auto;
+    padding-bottom: 70px;
 }
 
 .screen.editable {
@@ -60,9 +61,11 @@
     resize: none;
     font-family: Arial, sans-serif;
 }
+
 .note-box textarea:focus {
     border-color: #000;
 }
+
 .note-box button {
     width: 100%;
     height: 40px;
@@ -94,7 +97,41 @@
     opacity: .7;
     justify-content: center;
 }
+
 .note-box-number:hover {
     opacity: 1;
     cursor: pointer;
+}
+
+.sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.sticky-bar button {
+    padding: 0 20px;
+    font-size: 16px;
+    background: #444;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.sticky-bar button code {
+    background: rgba(255, 255, 255, .2);
+    padding: 4px 7px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.sticky-bar button.active {
+    background: #e519a3;
 }

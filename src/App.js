@@ -9,7 +9,7 @@ function App() {
 
 	const screen = useRef(null)
 	const [mode, setMode] = useState(false)
-	const [notes, setNotes] = useState(localStorage.notes && JSON.parse(localStorage.notes)|| [])
+	const [notes, setNotes] = useState(localStorage.notes && JSON.parse(localStorage.notes) || [])
 	const [position, setPosition] = useState({
 		x: 0,
 		y: 0,
@@ -17,7 +17,7 @@ function App() {
 	const [boxVisible, setBoxVisible] = useState(false)
 	const [boxPosition, setBoxPosition] = useState({
 		x: 0,
-		y: 0
+		y: 0,
 	})
 
 	useEffect(() => {
@@ -35,7 +35,7 @@ function App() {
 			setMode(!mode)
 			setBoxVisible(false)
 		}
-		if (e.key === 'Escape'){
+		if (e.key === 'Escape') {
 			setBoxVisible(false)
 		}
 	}
@@ -51,7 +51,7 @@ function App() {
 		if (mode) {
 			setBoxPosition({
 				x: position.x[0],
-				y: position.y[0]
+				y: position.y[0],
 			})
 			setBoxVisible(true)
 		}
@@ -63,22 +63,26 @@ function App() {
 		setMode,
 		setNotes,
 		setBoxVisible,
-		notes
+		notes,
 	}
 
 	return (
 		<MainContext.Provider value={data}>
 			<div ref={screen} tabIndex={0} onClick={handleClick} onMouseMove={handleMouseMove} onKeyUp={handleKeyUp}
-			     className={`screen${mode && ' editable'}`}>
+			     className={`screen${mode ? ' editable' : ''}`}>
 
-				<img style={{ opacity: '.7' }} src="https://webso.cool/images/radyosfer.jpg"/>
+				<img style={{opacity: '.7'}} src="https://webso.cool/images/radyosfer.jpg"/>
 
 				{mode && <LeaveCommentText/>}
 
 				{notes && notes.map((note, key) => <Note key={key} {...note} />)}
 
-				{boxVisible && <NoteBox />}
+				{boxVisible && <NoteBox/>}
 
+			</div>
+			<div className="sticky-bar">
+				<button onClick={() => setMode(!mode)} className={mode ? 'active' : ''}>Yorum Modu <code>c</code></button>
+				{boxVisible && <button onClick={() => setBoxVisible(false)} className="active">Kapat <code>Esc</code></button>}
 			</div>
 		</MainContext.Provider>
 	);

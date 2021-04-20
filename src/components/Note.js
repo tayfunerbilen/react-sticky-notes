@@ -14,14 +14,11 @@ function Note(note) {
 		}
 	}
 
-	const setNotePosition = (e, data) => {
-		// const currentNote = notes.find(n => n.number === note.number);
-		// currentNote.position = {
-		// 	x: data.x,
-		// 	y: data.y
-		// }
-		// setNotes([...notes.filter(n => n.number !== note.number), currentNote])
+	const removeNote = () => {
+		setNotes([...notes.filter(n => n.number !== note.number)])
+	}
 
+	const setNotePosition = (e, data) => {
 		const newNotes = notes.map(n => {
 			if (n.number === note.number){
 				n.position = {
@@ -32,17 +29,17 @@ function Note(note) {
 			return n
 		})
 		setNotes(newNotes)
-
 	}
 
 	return (
 		<Draggable onDrag={() => setClickable(false)} onStart={() => setClickable(true)} onStop={setNotePosition}
-		           defaultPosition={{x: note.position.x, y: note.position.y}}>
+		          defaultPosition={{x: note.position.x, y: note.position.y}} position={{x: note.position.x, y: note.position.y}}>
 			<div onMouseEnter={() => setMode(false)} onMouseLeave={() => setMode(true)} className="note-container"
 			     style={{'--color': note.color, position: 'absolute', top: 0, left: 0}}>
 				<span onClick={showNote} className="note-box-number">{note.number}</span>
 				<div className="note" style={{display: visible ? 'flex' : 'none'}}>
 					{note.note}
+					<button onClick={removeNote}>Kaldır</button>
 				</div>
 			</div>
 		</Draggable>
