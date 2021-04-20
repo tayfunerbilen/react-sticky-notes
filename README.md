@@ -2,4 +2,6 @@
 
 Derste birlikte hazırladığımız "yapışkan not" uygulaması kaynak kodları.
 
-Demo
+### Demo
+
+[https://react-yapiskan-notlar.netlify.app/](https://react-yapiskan-notlar.netlify.app/)
